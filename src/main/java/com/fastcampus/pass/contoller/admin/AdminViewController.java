@@ -2,15 +2,16 @@ package com.fastcampus.pass.contoller.admin;
 
 import com.fastcampus.pass.service.packaze.PackageService;
 import com.fastcampus.pass.service.pass.BulkPassService;
+import com.fastcampus.pass.service.statistics.StatisticsService;
 import com.fastcampus.pass.service.user.UserGroupMappingService;
+import com.fastcampus.pass.util.LocalDateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -21,9 +22,14 @@ public class AdminViewController {
     private PackageService packageService;
     @Autowired
     private UserGroupMappingService userGroupMappingService;
+    @Autowired
+    private StatisticsService statisticsService;
 
     @GetMapping
-    public ModelAndView home(ModelAndView modelAndView) {
+    public ModelAndView home(ModelAndView modelAndView, @RequestParam("to") String toString) {
+        LocalDateTime to = LocalDateTimeUtils.parseDate(toString);
+
+        modelAndView.addObject("chartData", statisticsService.makeChartData(to));
         modelAndView.setViewName("admin/index");
         return modelAndView;
     }
