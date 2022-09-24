@@ -14,11 +14,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/passes")
-public class PassWebController {
+public class PassViewController {
     private final UserService userService;
     private final PassService passService;
 
-    public PassWebController(UserService userService, PassService passService) {
+    public PassViewController(UserService userService, PassService passService) {
         this.userService = userService;
         this.passService = passService;
     }
