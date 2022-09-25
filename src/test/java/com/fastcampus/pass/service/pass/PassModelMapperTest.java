@@ -38,9 +38,6 @@ public class PassModelMapperTest {
         assertEquals(1, passes.size());
         final Pass pass = passes.get(0);
 
-
-
-
-
     }
+
 }

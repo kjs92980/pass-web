@@ -49,7 +49,7 @@ var myLineChart = new Chart(ctx, {
             pointBorderWidth: 2,
             data: chartData.attendedCounts,
         }, {
-            label: "결석 횟수",
+            label: "취소 횟수",
             lineTension: 0.3,
             backgroundColor: "rgba(231, 74, 59, 0.05)",
             borderColor: "rgba(231, 74, 59, 1)",
